@@ -12,8 +12,9 @@ public class UIStuff : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _pointsUI.text = "Points" + _points.ToString();
+        _pointsUI.text = "Points: " + _points.ToString();
         Locator.Instance.Player.GotPoint += HandlePoints;
+        Locator.Instance.Player.Died += Death;
     }
 
     // Update is called once per frame
@@ -25,6 +26,12 @@ public class UIStuff : MonoBehaviour
     public void HandlePoints()
     {
         _points ++;
-        _pointsUI.text = "Points" + _points.ToString();
+        _pointsUI.text = "Points: " + _points.ToString();
     }
+
+    void Death()
+    {
+        _pointsUI.text = "GAME OVER!";
+    }
+
 }
