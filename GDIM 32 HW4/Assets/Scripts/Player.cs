@@ -9,10 +9,14 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator pigeonAnimator;
     //delegate stuff
     public delegate void Delegate();
+    public delegate void Points(int x);
+    public event Points AddPoint;
     public event Delegate GotPoint;
 
     public event Delegate Died;
     public event Delegate Flapped;
+
+    private int _points = 0;
     
 
     // Start is called before the first frame update
@@ -49,8 +53,10 @@ public class Player : MonoBehaviour
         
         if (other.gameObject.tag == "PointCollider")
         {
-            Debug.Log("Got Point");
             GotPoint?.Invoke();
+            _points ++;
+            AddPoint?.Invoke(_points);
+            
         }
 
         

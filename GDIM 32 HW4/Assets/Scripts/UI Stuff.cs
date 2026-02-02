@@ -13,7 +13,7 @@ public class UIStuff : MonoBehaviour
     void Start()
     {
         _pointsUI.text = "Points: " + _points.ToString();
-        Locator.Instance.Player.GotPoint += HandlePoints;
+        Locator.Instance.Player.AddPoint += HandlePoints;
         Locator.Instance.Player.Died += Death;
     }
 
@@ -23,10 +23,9 @@ public class UIStuff : MonoBehaviour
         
     }
 
-    public void HandlePoints()
+    public void HandlePoints(int points)
     {
-        _points ++;
-        _pointsUI.text = "Points: " + _points.ToString();
+        _pointsUI.text = "Points: " + points.ToString();
     }
 
     void Death()
